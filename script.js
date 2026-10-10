@@ -1,11 +1,11 @@
 
-const API_URL = "https://datamedic-api.onrender.com/login";
+const API_URL = "https://datamedic-api.onrender.com";
 
 let selectedFile = null;
 let cleanedFileBlob = null;
 
 
-// --------------------------------------------------
+// --------------------------------------------f------
 // ELEMENTS
 // --------------------------------------------------
 
