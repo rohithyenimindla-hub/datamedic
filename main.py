@@ -45,7 +45,7 @@ app.add_middleware(
 @app.get("/")
 def home():
     return {
-        "message": "DataFix AI Backend is running",
+        "message": "DataFix  Backend is running",
         "status": "OK"
     }
 
