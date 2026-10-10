@@ -1,5 +1,5 @@
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://datamedic-api.onrender.com/login";
 
 let selectedFile = null;
 let cleanedFileBlob = null;
