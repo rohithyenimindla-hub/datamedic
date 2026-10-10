@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DataMedic</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <span class="logo-icon"><img src="icon/logo.png" alt="DataMedic Logo"></span>
+            DataMedic <span></span>
+        </div>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="badge">
+                DataMedic Cleans Your Data in Seconds
+            </div>
+
+            <h1>
+                Turn messy data into
+                <span>clean data.</span>
+            </h1>
+
+            <p>
+                Upload your Excel or CSV file and automatically
+                detect duplicates, missing values, inconsistent
+                columns and messy data.
+            </p>
+
+        </section>
+
+
+        <!-- UPLOAD CARD -->
+        <section class="upload-card">
+
+            <div id="dropZone" class="drop-zone">
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+                <h2>Upload your dataset</h2>
+
+                <p>
+                    Drag & drop your CSV or Excel file here
+                </p>
+
+                <p class="or">
+                    or
+                </p>
+
+                <label for="fileInput" class="upload-button">
+                    Choose File
+                </label>
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    accept=".csv,.xlsx,.xls"
+                    hidden
+                >
+
+                <p class="file-info">
+                    Supported: CSV, XLSX, XLS
+                </p>
+
+            </div>
+
+            <div id="selectedFile" class="selected-file hidden">
+
+                <div class="file-icon">
+                    📄
+                </div>
+
+                <div class="file-details">
+                    <strong id="fileName">file.csv</strong>
+                    <span id="fileSize">0 KB</span>
+                </div>
+
+                <button id="removeFile" class="remove-btn">
+                    ×
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTIONS -->
+        <section id="actions" class="actions hidden">
+
+            <button id="analyzeBtn" class="primary-btn">
+                🔍 Analyze Dataset
+            </button>
+
+            <button id="cleanBtn" class="clean-btn">
+                ✨ Clean Dataset
+            </button>
+
+        </section>
+
+
+        <!-- LOADING -->
+        <div id="loading" class="loading hidden">
+
+            <div class="spinner"></div>
+
+            <p id="loadingText">
+                Processing your dataset...
+            </p>
+
+        </div>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="dashboard hidden">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Data Quality Overview</h2>
+                    <p>Analysis of your uploaded dataset</p>
+                </div>
+
+                <div id="qualityBadge" class="quality-badge">
+                    Ready
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ↕
+                    </div>
+
+                    <div>
+                        <p>Rows</p>
+                        <h3 id="rowsCount">0</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ▦
+                    </div>
+
+                    <div>
+                        <p>Columns</p>
+                        <h3 id="columnsCount">0</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon red">
+                        ⧉
+                    </div>
+
+                    <div>
+                        <p>Duplicates</p>
+                        <h3 id="duplicatesCount">0</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        !
+                    </div>
+
+                    <div>
+                        <p>Missing Values</p>
+                        <h3 id="missingCount">0</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETAILS -->
+            <div class="details-grid">
+
+
+                <!-- MISSING VALUES -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h3>Missing Values</h3>
+
+                        <span id="missingBadge">
+                            0
+                        </span>
+
+                    </div>
+
+                    <div id="missingList" class="list">
+                        <p class="empty">
+                            No missing values detected.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- COLUMNS -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h3>Columns</h3>
+
+                        <span id="columnBadge">
+                            0
+                        </span>
+
+                    </div>
+
+                    <div id="columnList" class="column-list">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CLEANING RESULTS -->
+            <div id="cleaningResults" class="panel cleaning-panel hidden">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>✨ Cleaning Results</h3>
+                        <p>Dataset successfully processed</p>
+                    </div>
+
+                    <span class="success-badge">
+                        Cleaned
+                    </span>
+
+                </div>
+
+
+                <div class="results-grid">
+
+                    <div>
+                        <span>Original Rows</span>
+                        <strong id="originalRows">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Final Rows</span>
+                        <strong id="finalRows">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Duplicates Removed</span>
+                        <strong id="duplicatesRemoved">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Empty Rows Removed</span>
+                        <strong id="emptyRowsRemoved">0</strong>
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="downloadBtn"
+                    class="download-btn">
+                    ↓ Download Cleaned File
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            DataFix AI • TriCity Aithon 2026
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
